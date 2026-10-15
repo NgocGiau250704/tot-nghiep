@@ -1,49 +1,62 @@
 
-const params = new URLSearchParams(window.location.search);
-const guestSlug = params.get("guest");
+/* =========================
+   1. THÔNG TIN KHÁCH MỜI
+========================= */
 
+const params = new URLSearchParams(window.location.search);
+
+const guestSlug = (params.get("guest") || "").trim().toLowerCase();
+const guestType = (params.get("type") || "friend").trim().toLowerCase();
+
+// Danh sách tên khách mời duy nhất
 const guestNames = {
   "ngoc-giau": "Ngọc Giàu",
   "chi-linh": "Chị Linh",
   "ba-me": "Ba mẹ",
   "hai-yen": "Chị Yến",
-  "tuong-vy": "Chị Vy",
-  
+  "tuong-vy": "Tường Vy",
+  "yen-nhien": "Yên Nhiên"
 };
 
+// Chuyển slug thành tên dễ đọc nếu chưa có trong danh sách
 function formatGuestName(slug) {
   return (slug || "")
     .replace(/[-_]+/g, " ")
     .trim()
-    .replace(/(^|\s)\S/g, letter => letter.toLocaleUpperCase("vi"));
+    .replace(/(^|\s)\S/g, letter =>
+      letter.toLocaleUpperCase("vi")
+    );
 }
 
 const guestName = guestSlug
-  ? guestNames[guestSlug.toLowerCase()] || formatGuestName(guestSlug)
-  : "bạn!";
+  ? guestNames[guestSlug] || formatGuestName(guestSlug)
+  : "bạn";
 
 // Hiển thị tên khách mời
 const guestNameElement = document.getElementById("guestName");
+
 if (guestNameElement) {
   guestNameElement.textContent = guestName;
 }
 
-
+// Hiển thị lời chào theo nhóm khách
 const greeting = document.getElementById("greeting");
-const normalizedSlug = (guestSlug || "").trim().toLowerCase();
 
 if (greeting) {
-  if (Object.prototype.hasOwnProperty.call(guestNames, normalizedSlug)) {
-    greeting.textContent = `Đến chung vui cùng em trong ngày tốt nghiệp nhé, ${guestName}.`;
+  if (guestType === "senior") {
+    greeting.textContent =
+      "Đến chung vui cùng em trong ngày tốt nghiệp nhé,";
   } else {
     greeting.textContent =
-      `Cùng mình ghi dấu một cột mốc đáng nhớ nha, ${guestName}.`;
+      "Cùng mình ghi dấu một cột mốc đáng nhớ nha,";
   }
 }
 
 
+/* =========================
+   2. KHAI BÁO PHẦN TỬ
+========================= */
 
-// Khai báo các phần tử
 const envelope = document.getElementById("envelope");
 const invitation = document.getElementById("invitation");
 const openButton = document.getElementById("openButton");
@@ -53,15 +66,19 @@ const musicButton = document.getElementById("musicButton");
 
 let opened = false;
 
-// Thử tự phát nhạc khi mở trang
+
+/* =========================
+   3. NHẠC NỀN
+========================= */
+
+// Chuẩn bị âm lượng
 if (bgMusic) {
   bgMusic.volume = 0.4;
-  bgMusic.play().then(() => {
-    if (musicButton) musicButton.textContent = "♫ Tắt nhạc";
-  }).catch(() => {
-    // Trình duyệt có thể chặn tự phát nhạc
-  });
 }
+
+// Trình duyệt có thể chặn tự phát nhạc.
+// Nhạc sẽ được thử phát khi khách bấm mở thiệp.
+
 
 // Nút bật/tắt nhạc
 if (bgMusic && musicButton) {
@@ -81,47 +98,59 @@ if (bgMusic && musicButton) {
   });
 }
 
-// Nút mở phong bì
+
+/* =========================
+   4. NÚT MỞ PHONG BÌ
+========================= */
+
 if (openButton) {
   openButton.addEventListener("click", async () => {
     if (opened) return;
+
     opened = true;
 
+    // Hiệu ứng mở phong bì
     envelope?.classList.add("open");
 
     if (tapHint) {
       tapHint.textContent = "Thiệp dành riêng cho bạn ♡";
     }
 
-    // Thử phát nhạc sau thao tác của khách
+    // Phát nhạc sau thao tác của khách
     if (bgMusic) {
       try {
         await bgMusic.play();
-        if (musicButton) musicButton.textContent = "♫ Tắt nhạc";
+
+        if (musicButton) {
+          musicButton.textContent = "♫ Tắt nhạc";
+        }
       } catch (error) {
         console.log("Không thể phát nhạc:", error);
       }
     }
 
+    // Hiện nội dung thiệp sau hiệu ứng mở
+    setTimeout(() => {
+      invitation?.classList.remove("hidden");
 
-setTimeout(() => {
-  invitation?.classList.remove("hidden");
+      const memories = document.getElementById("memories");
+      memories?.classList.remove("hidden");
 
-  const memories = document.getElementById("memories");
-  memories?.classList.remove("hidden");
+      invitation?.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
 
-  invitation?.scrollIntoView({
-    behavior: "smooth",
-    block: "start"
-  });
-
-  launchConfetti();
-}, 850);
-
+      launchConfetti();
+    }, 850);
   });
 }
 
-// Hiệu ứng pháo giấy
+
+/* =========================
+   5. HIỆU ỨNG PHÁO GIẤY
+========================= */
+
 function launchConfetti() {
   const canvas = document.getElementById("confetti");
   if (!canvas) return;
@@ -133,8 +162,11 @@ function launchConfetti() {
   canvas.height = window.innerHeight;
 
   const colors = [
-    "#d98ca7", "#f3c6d6", "#e8b66d",
-    "#ffffff", "#b85d7e"
+    "#d98ca7",
+    "#f3c6d6",
+    "#e8b66d",
+    "#ffffff",
+    "#b85d7e"
   ];
 
   const pieces = Array.from({ length: 110 }, () => ({
@@ -161,12 +193,14 @@ function launchConfetti() {
       ctx.translate(piece.x, piece.y);
       ctx.rotate(piece.rotation);
       ctx.fillStyle = piece.color;
+
       ctx.fillRect(
         -piece.size / 2,
         -piece.size / 2,
         piece.size,
         piece.size * 0.65
       );
+
       ctx.restore();
     });
 
