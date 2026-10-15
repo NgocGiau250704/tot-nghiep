@@ -1,0 +1,768 @@
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+/* ========================================
+   1. BẢNG MÀU VÀ THIẾT LẬP CHUNG
+======================================== */
+:root {
+  --pink: #ed4b87;
+  --hot-pink: #ff579d;
+  --dark-pink: #b82360;
+  --ruby: #861943;
+  --gold: #e6b653;
+  --champagne: #fff0bd;
+  --ink: #642d45;
+  --cream: #fff9f4;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  background:
+    radial-gradient(ellipse at 12% 12%, #ffffff 0%, transparent 28%),
+    radial-gradient(ellipse at 88% 20%, #ffc2d8 0%, transparent 32%),
+    radial-gradient(ellipse at 50% 95%, #f3b0cd 0%, transparent 38%),
+    linear-gradient(135deg, #fff0f5, #ffd9e7 52%, #f8c2d8);
+  overflow-x: clip;
+}
+
+.page {
+  position: relative;
+  z-index: 1;
+  width: min(100% - 32px, 760px);
+  margin: auto;
+  padding: 45px 0 24px;
+  text-align: center;
+}
+
+h1,
+h2,
+.signature {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+h1 {
+  margin: 12px 0 8px;
+  color: var(--ruby);
+  font-size: clamp(2.4rem, 8vw, 4.4rem);
+  text-shadow: 0 3px 18px #ed8eb444;
+}
+
+.eyebrow {
+  color: var(--dark-pink);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
+
+.subtitle {
+  color: #8d4d69;
+  line-height: 1.8;
+}
+
+/* ========================================
+   2. KHU VỰC PHONG BÌ
+======================================== */
+.envelope-area {
+  padding: 55px 0 40px;
+  perspective: 1200px;
+}
+
+.envelope {
+  position: relative;
+  width: min(500px, 92vw);
+  height: 330px;
+  margin: 0 auto;
+  filter: drop-shadow(0 18px 25px #a51d5635);
+}
+
+/* Mặt sau phong bì */
+.envelope-back {
+  position: absolute;
+  inset: 0;
+  border: 2px solid #e8bd63;
+  border-radius: 10px;
+  background: linear-gradient(
+    140deg,
+    #ed6599,
+    #c72d6c 58%,
+    #8f1949
+  );
+  box-shadow:
+    inset 0 0 0 5px #ffffff20,
+    inset 0 0 24px #75153b35,
+    0 0 18px #ff8fbd30;
+}
+
+/* Tấm thiệp bên trong */
+.letter {
+  position: absolute;
+  z-index: 1;
+  left: 5%;
+  bottom: 12px;
+  width: 90%;
+  min-height: 300px;
+  height: auto;
+  padding: 30px 22px;
+  overflow: visible;
+  text-align: center;
+  border: 2px solid #e8bd63;
+  border-radius: 7px;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 100% 0%, #ffe7a6 0%, transparent 28%),
+    linear-gradient(145deg, #fffdf9, #ffeaf1 72%, #fff1d7);
+  box-shadow:
+    0 0 0 4px #ffffff45,
+    0 5px 18px #7b1d4530;
+  transition:
+    transform 0.85s ease,
+    z-index 0.1s 0.35s;
+}
+
+.letter-kicker {
+  margin: 0 0 10px;
+  color: var(--dark-pink);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+}
+
+.letter h2 {
+  margin: 0 0 12px;
+  font-size: clamp(1.4rem, 5vw, 2rem);
+}
+
+.letter-copy {
+  color: #8c5a70;
+  font-size: 0.85rem;
+  line-height: 1.8;
+}
+
+.letter-line {
+  width: 55px;
+  height: 2px;
+  margin: 15px auto 10px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--gold),
+    var(--hot-pink),
+    var(--gold),
+    transparent
+  );
+}
+
+.letter-name {
+  margin: 0;
+  color: #965c76;
+  font-size: 0.72rem;
+}
+
+.signature {
+  margin: 5px 0;
+  color: var(--dark-pink);
+  font-size: 1.2rem;
+}
+
+/* Hai cánh phong bì */
+.envelope-left,
+.envelope-right,
+.envelope-front {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.envelope-left {
+  z-index: 3;
+  background: linear-gradient(135deg, #ffb0ce, #e9508a);
+  clip-path: polygon(0 0, 52% 56%, 0 100%);
+}
+
+.envelope-right {
+  z-index: 3;
+  background: linear-gradient(225deg, #f77da9, #c62b69);
+  clip-path: polygon(100% 0, 48% 56%, 100% 100%);
+}
+
+.envelope-front {
+  z-index: 4;
+  background: linear-gradient(155deg, #ffc2d6, #ee679b 70%, #c52c69);
+  clip-path: polygon(0 100%, 50% 48%, 100% 100%);
+}
+
+/* Nắp phong bì */
+.envelope::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 5;
+  height: 59%;
+  background: linear-gradient(
+    145deg,
+    #ffc6d9,
+    #ed6098 62%,
+    #bd2c68
+  );
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top;
+  transition: transform 0.7s ease;
+  backface-visibility: hidden;
+}
+
+/* Con dấu */
+.seal {
+  position: absolute;
+  z-index: 6;
+  top: 62%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  padding: 0;
+  transform: translate(-50%, -50%);
+  border: 2px solid var(--champagne);
+  border-radius: 50%;
+  color: var(--champagne);
+  background: radial-gradient(circle at 30% 25%, #ff93bc, #b51e5c 75%);
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow:
+    0 0 0 4px #e8bd6360,
+    0 0 20px #ffd77e90,
+    inset 0 0 10px #75143c65;
+  transition: opacity 0.3s ease;
+}
+
+.envelope.open::before {
+  transform: rotateX(180deg);
+  z-index: 0;
+}
+
+.envelope.open .letter {
+  z-index: 7;
+  transform: translateY(-145px);
+}
+
+.envelope.open .seal {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.tap-hint {
+  margin-top: 18px;
+  color: #9b4268;
+  font-size: 0.85rem;
+}
+
+/* ========================================
+   3. TÊN NGƯỜI NHẬN LUNG LINH
+======================================== */
+.letter-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  margin: 12px 0 22px;
+  padding: 10px 0 18px;
+  overflow: visible;
+  text-align: center;
+}
+
+.invite-label {
+  color: #8f365a;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1rem, 4vw, 1.3rem);
+  font-weight: 500;
+  letter-spacing: 4px;
+}
+
+/* Tên có ánh hồng và vàng kim chuyển động */
+.guest-name {
+  display: inline-block;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  color: var(--dark-pink);
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.8rem, 7vw, 3rem);
+  font-weight: 700;
+  line-height: 1.5;
+  background: linear-gradient(
+    110deg,
+    #a51d56 0%,
+    #ef4a88 20%,
+    #ffbad4 34%,
+    #c28b28 47%,
+    #fff0b2 52%,
+    #f34e91 70%,
+    #921744 100%
+  );
+  background-size: 300% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 4px #f17ca8);
+  animation:
+    shimmerName 3s linear infinite,
+    glowName 1.8s ease-in-out infinite;
+}
+
+@keyframes shimmerName {
+  from {
+    background-position: 100% center;
+  }
+  to {
+    background-position: -200% center;
+  }
+}
+
+@keyframes glowName {
+  0%,
+  100% {
+    filter:
+      drop-shadow(0 0 4px #f18ab4)
+      drop-shadow(0 0 8px #ffd2e2);
+  }
+  50% {
+    filter:
+      drop-shadow(0 0 8px #ff4d98)
+      drop-shadow(0 0 17px #ff9fc3)
+      drop-shadow(0 0 25px #ffd0e0);
+  }
+}
+
+/* ========================================
+   4. NỘI DUNG LỜI MỜI
+======================================== */
+.invitation {
+  width: 100%;
+  max-width: 650px;
+  margin: 20px auto 30px;
+  padding: 32px clamp(18px, 5vw, 42px);
+  border: 2px solid #e9c46d;
+  border-radius: 18px;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 100% 0%, #fff0c6 0%, transparent 27%),
+    linear-gradient(145deg, #fffdf9, #ffeaf1 70%, #fff2df);
+  box-shadow:
+    0 12px 35px #a33a6120,
+    0 0 20px #ffc0d84d;
+  animation: rise 0.7s ease both;
+}
+
+.invitation h2 {
+  margin: 10px 0;
+  color: var(--ruby);
+  font-size: clamp(1.7rem, 5vw, 2.3rem);
+}
+
+.invite-copy {
+  color: #805066;
+  line-height: 1.9;
+}
+
+.details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 28px 0 22px;
+  text-align: left;
+}
+
+.detail {
+  display: flex;
+  gap: 12px;
+  min-width: 0;
+  padding: 16px 12px;
+  border: 1px solid #f0c6d5;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #fff1f6, #ffe5ed);
+  box-shadow: 0 4px 12px #c54a7a0d;
+}
+
+.detail-icon {
+  color: var(--dark-pink);
+  font-size: 1.3rem;
+}
+
+.detail div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.detail small {
+  color: #a83c68;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+}
+
+.detail strong {
+  overflow-wrap: anywhere;
+  color: #6f304d;
+  font-size: 0.9rem;
+}
+
+.detail div span {
+  color: #805066;
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+/* ========================================
+   5. NÚT BẤM VÀ NÚT NHẠC
+======================================== */
+.map-button {
+  display: inline-block;
+  padding: 13px 22px;
+  border: 1px solid #ffe9aa;
+  border-radius: 999px;
+  color: #fffaf3;
+  background: linear-gradient(120deg, #f45c98, #bd245f 65%, #8c1948);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 700;
+  box-shadow: 0 5px 16px #a5235a3d;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.map-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px #d52e7955;
+}
+
+.music-button {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 20;
+  padding: 12px 17px;
+  border: 1px solid #ffe5a1;
+  border-radius: 999px;
+  color: #fff8e9;
+  background: linear-gradient(135deg, #a41c53, #e74383, #bd822b);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 18px #9d1c4d40;
+}
+
+.music-button:hover {
+  filter: brightness(1.08);
+}
+
+/* ========================================
+   6. PHẦN KẾT VÀ CHÂN TRANG
+======================================== */
+.closing {
+  margin-top: 26px;
+  color: #805066;
+  line-height: 1.9;
+}
+
+.closing span {
+  color: var(--dark-pink);
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.1rem;
+}
+
+footer {
+  padding: 10px 0;
+  color: #9d5874;
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+}
+
+footer span {
+  color: #d33b78;
+}
+
+/* ========================================
+   7. TRANG TRÍ LẤP LÁNH
+======================================== */
+.sparkle {
+  position: fixed;
+  z-index: 0;
+  color: #d69c38;
+  opacity: 0.9;
+  font-size: 2rem;
+  text-shadow:
+    0 0 6px #fff0b0,
+    0 0 15px #ffc8de;
+  animation: sparkleTwinkle 2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.sparkle-one {
+  top: 14%;
+  left: 8%;
+}
+
+.sparkle-two {
+  top: 32%;
+  right: 9%;
+  font-size: 2.5rem;
+  animation-delay: 0.8s;
+}
+
+@keyframes sparkleTwinkle {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(0.85) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2) rotate(18deg);
+  }
+}
+
+#confetti {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========================================
+   8. ALBUM ẢNH
+======================================== */
+.memory-album {
+  width: calc(100% - 28px);
+  max-width: 900px;
+  margin: 35px auto;
+  padding: clamp(20px, 5vw, 38px);
+  border: 2px solid #e5bf6b;
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 100% 0%, #fff0c8 0%, transparent 30%),
+    linear-gradient(145deg, #fffdf9, #ffe8ef 75%, #fff2dc);
+  box-shadow:
+    0 12px 32px #9d315a18,
+    0 0 18px #ffc0d933;
+}
+
+.memory-album h2 {
+  margin: 10px 0;
+  color: var(--ruby);
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.7rem, 5vw, 2.3rem);
+}
+
+.album-intro,
+.album-note {
+  color: #936078;
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin: 25px 0;
+}
+
+.photo-card {
+  min-width: 0;
+  margin: 0;
+  padding: 10px 10px 15px;
+  border: 1px solid #e5c37d;
+  border-radius: 4px;
+  background: #fffefa;
+  box-shadow: 0 5px 16px #8f274b18;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.photo-card:nth-child(odd) {
+  transform: rotate(-1.5deg);
+}
+
+.photo-card:nth-child(even) {
+  transform: rotate(1.5deg);
+}
+
+.photo-card:hover {
+  transform: translateY(-4px) rotate(0);
+  box-shadow: 0 10px 22px #8f274b2a;
+}
+
+.photo-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 2px;
+  background: #f4dbe5;
+}
+
+.photo-card figcaption {
+  padding: 12px 2px 0;
+  color: #91405f;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.album-note {
+  margin-top: 28px;
+  font-style: italic;
+}
+
+/* ========================================
+   9. TRẠNG THÁI ẨN
+======================================== */
+.hidden {
+  display: none !important;
+}
+
+/* ========================================
+   10. GIAO DIỆN ĐIỆN THOẠI
+======================================== */
+@media (max-width: 520px) {
+  .page {
+    width: calc(100% - 24px);
+    padding-top: 35px;
+  }
+
+  .envelope-area {
+    padding-top: 40px;
+    padding-bottom: 30px;
+  }
+
+  .envelope {
+    width: 92vw;
+    height: 255px;
+  }
+
+  .letter {
+    left: 5%;
+    width: 90%;
+    min-height: 250px;
+    padding: 25px 15px;
+  }
+
+  .envelope.open .letter {
+    transform: translateY(-115px);
+  }
+
+  .letter-title {
+    gap: 8px;
+    margin: 10px 0 16px;
+    padding: 8px 0 12px;
+  }
+
+  .guest-name {
+    font-size: clamp(1.7rem, 7.5vw, 2.5rem);
+  }
+
+  .details {
+    grid-template-columns: 1fr;
+  }
+
+  .memory-album {
+    width: calc(100% - 20px);
+    padding: 16px;
+  }
+
+  .photo-grid {
+    gap: 12px;
+  }
+
+  .photo-card {
+    padding: 7px 7px 12px;
+  }
+
+  .photo-card img {
+    aspect-ratio: 3 / 4;
+  }
+
+  .photo-card figcaption {
+    font-size: 0.75rem;
+  }
+
+  .music-button {
+    right: 12px;
+    bottom: 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .envelope {
+    height: 225px;
+  }
+
+  .envelope.open .letter {
+    transform: translateY(-105px);
+  }
+
+  .letter {
+    min-height: 235px;
+    padding: 22px 12px;
+  }
+
+  .guest-name {
+    font-size: 1.65rem;
+  }
+
+  .photo-grid {
+    gap: 9px;
+  }
+}
+
+/* Tôn trọng cài đặt giảm chuyển động */
+@media (prefers-reduced-motion: reduce) {
+  .guest-name,
+  .sparkle {
+    animation: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Chỉnh chữ mô tả nhỏ hơn, giữ nguyên tiêu đề */
+.detail p:not(.detail-label):not(.detail-value) {
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* Giữ tiêu đề rõ ràng */
+.detail .detail-label {
+  font-size: 14px;
+}
+
+/* Giữ nội dung chính nổi bật hơn chữ mô tả */
+.detail .detail-value {
+  font-size: 16px;
+}
