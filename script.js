@@ -6,7 +6,6 @@ const guestNames = {
   "ngoc-giau": "Ngọc Giàu",
   "chi-linh": "Chị Linh",
   "ba-me": "Ba mẹ",
-  "meo": "Mèo",
   "hai-yen": "Chị Yến",
   "tuong-vy": "Chị Vy",
   
