@@ -6,7 +6,10 @@ const guestNames = {
   "ngoc-giau": "Ngọc Giàu",
   "chi-linh": "Chị Linh",
   "ba-me": "Ba mẹ",
-  "meo": "Mèo"
+  "meo": "Mèo",
+  "hai-yen": "Chị Yến",
+  "tuong-vy": "Chị Vy",
+  
 };
 
 function formatGuestName(slug) {
@@ -29,7 +32,7 @@ if (guestNameElement) {
 const greeting = document.getElementById("greeting");
 if (greeting) {
   greeting.textContent = guestName === "bạn!"
-    ? "Đến chung vui cùng mình trong ngày tốt nghiệp nhé."
+    ? "Đến chung vui cùng em trong ngày tốt nghiệp nhé,"
     : `Cùng mình ghi dấu một cột mốc đáng nhớ nha, ${guestName}.`;
 }
 
