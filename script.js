@@ -29,8 +29,10 @@ if (guestNameElement) {
 }
 
 const greeting = document.getElementById("greeting");
+
+
 if (greeting) {
-  greeting.textContent = guestName === "bạn!"
+  greeting.textContent = guestSlug && guestNames[guestSlug.toLowerCase()]
     ? "Đến chung vui cùng em trong ngày tốt nghiệp nhé,"
     : `Cùng mình ghi dấu một cột mốc đáng nhớ nha, ${guestName}.`;
 }
