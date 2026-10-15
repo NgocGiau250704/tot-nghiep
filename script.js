@@ -28,19 +28,19 @@ if (guestNameElement) {
   guestNameElement.textContent = guestName;
 }
 
-const greeting = document.getElementById("greeting");
 
 const greeting = document.getElementById("greeting");
 const normalizedSlug = (guestSlug || "").trim().toLowerCase();
 
 if (greeting) {
   if (Object.prototype.hasOwnProperty.call(guestNames, normalizedSlug)) {
-    greeting.textContent = "Đến chung vui cùng em trong ngày tốt nghiệp nhé,${guestName}.";
+    greeting.textContent = `Đến chung vui cùng em trong ngày tốt nghiệp nhé, ${guestName}.`;
   } else {
     greeting.textContent =
       `Cùng mình ghi dấu một cột mốc đáng nhớ nha, ${guestName}.`;
   }
 }
+
 
 
 // Khai báo các phần tử
