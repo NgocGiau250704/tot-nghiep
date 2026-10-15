@@ -15,7 +15,25 @@ const guestNames = {
   "ba-me": "Ba mẹ",
   "hai-yen": "Chị Yến",
   "tuong-vy": "Tường Vy",
-  "yen-nhien": "Yên Nhiên"
+  "yen-nhien": "Yên Nhiên",
+   "kieu-vy":"Kiều Vy",
+   "mong-tuyen":"Mộng Tuyền"
+   "thu-thuy":"Thu Thủy",
+   "thuy-vy":"Thúy Vy",
+   "thanh-thuy":"Thanh Thúy",
+   "ngoc-han":"Ngọc Hân",
+   "kim-thuy":"Kim Thùy",
+   "ngo-thanh":"Ngô Thành",
+   "tan-khang":"Tấn Khang",
+   "quoc-thanh":"Quốc Thành",
+   "nhat-huy":"Nhật Huy",
+   "xuan-dao":"Xuân Đào",
+   "thien-nhan":"Thiện Nhân",
+   "anh-thu": "Anh Thư",
+   "lan-chi":"Lan Chi",
+   "gia-huy":"Gia Huy",
+   "keke":"Ngọc Huyền",
+   "sep":"Sếp Bằng"
 };
 
 // Chuyển slug thành tên dễ đọc nếu chưa có trong danh sách
@@ -45,10 +63,10 @@ const greeting = document.getElementById("greeting");
 if (greeting) {
   if (guestType === "senior") {
     greeting.textContent =
-      "Đến chung vui cùng em trong ngày tốt nghiệp nhé,";
+      "Đến chung vui cùng em trong ngày tốt nghiệp nhé, ${guestName}";
   } else {
     greeting.textContent =
-      "Cùng mình ghi dấu một cột mốc đáng nhớ nha,";
+      "Cùng mình ghi dấu một cột mốc đáng nhớ nha, ${guestName}";
   }
 }
 
