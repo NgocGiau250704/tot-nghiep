@@ -35,7 +35,7 @@ const normalizedSlug = (guestSlug || "").trim().toLowerCase();
 
 if (greeting) {
   if (Object.prototype.hasOwnProperty.call(guestNames, normalizedSlug)) {
-    greeting.textContent = "Đến chung vui cùng em trong ngày tốt nghiệp nhé,";
+    greeting.textContent = "Đến chung vui cùng em trong ngày tốt nghiệp nhé,${guestName}.";
   } else {
     greeting.textContent =
       `Cùng mình ghi dấu một cột mốc đáng nhớ nha, ${guestName}.`;
