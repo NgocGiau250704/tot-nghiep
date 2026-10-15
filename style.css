@@ -65,10 +65,15 @@ h1 {
   letter-spacing: 0.2em;
 }
 
+
 .subtitle {
-  color: #8d4d69;
+  color: #936078;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
   line-height: 1.8;
+  font-style: italic;
 }
+
 
 /* ========================================
    2. KHU VỰC PHONG BÌ
