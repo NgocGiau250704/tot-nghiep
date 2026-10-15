@@ -30,12 +30,18 @@ if (guestNameElement) {
 
 const greeting = document.getElementById("greeting");
 
+const greeting = document.getElementById("greeting");
+const normalizedSlug = (guestSlug || "").trim().toLowerCase();
 
 if (greeting) {
-  greeting.textContent = guestSlug && guestNames[guestSlug.toLowerCase()]
-    ? "Đến chung vui cùng em trong ngày tốt nghiệp nhé,"
-    : `Cùng mình ghi dấu một cột mốc đáng nhớ nha, ${guestName}.`;
+  if (Object.prototype.hasOwnProperty.call(guestNames, normalizedSlug)) {
+    greeting.textContent = "Đến chung vui cùng em trong ngày tốt nghiệp nhé,";
+  } else {
+    greeting.textContent =
+      `Cùng mình ghi dấu một cột mốc đáng nhớ nha, ${guestName}.`;
+  }
 }
+
 
 // Khai báo các phần tử
 const envelope = document.getElementById("envelope");
