@@ -17,7 +17,7 @@ const guestNames = {
   "tuong-vy": "Tường Vy",
   "yen-nhien": "Yên Nhiên",
    "kieu-vy":"Kiều Vy",
-   "mong-tuyen":"Mộng Tuyền"
+   "mong-tuyen":"Mộng Tuyền",
    "thu-thuy":"Thu Thủy",
    "thuy-vy":"Thúy Vy",
    "thanh-thuy":"Thanh Thúy",
@@ -63,10 +63,10 @@ const greeting = document.getElementById("greeting");
 if (greeting) {
   if (guestType === "senior") {
     greeting.textContent =
-      "Đến chung vui cùng em trong ngày tốt nghiệp nhé, ${guestName}";
+      `Đến chung vui cùng em trong ngày tốt nghiệp nhé, ${guestName}`;
   } else {
     greeting.textContent =
-      "Cùng mình ghi dấu một cột mốc đáng nhớ nha, ${guestName}";
+      `Cùng mình ghi dấu một cột mốc đáng nhớ nha, ${guestName}`;
   }
 }
 
